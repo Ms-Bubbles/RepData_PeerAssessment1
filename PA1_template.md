@@ -89,7 +89,7 @@ nrow(data[!complete.cases(data),])
 ## [1] 2304
 ```
 
-Exchanging missing values and creating a new data set with the missing values excganged:
+Exchanging missing values with the averaged values for appropriate intervals and creating a new data set with the missing values exchanged:
 
 
 ```r
@@ -152,6 +152,8 @@ nd$day <- weekdays(nd$day, abbreviate=FALSE)
 nd$day[nd$day %in% c("Saturday", "Sunday")] <- "weekend"
 nd$day[nd$day %in% c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")] <- "weekday"
 ```
+
+Prepare the data (assign correctly "weekday" and "weekend" values) and create a panel plot for comparison of results:
 
 
 ```r

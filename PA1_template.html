@@ -274,7 +274,7 @@ steps_averaged[which.max(steps_averaged$steps_averaged),]
 <pre><code>## [1] 2304
 </code></pre>
 
-<p>Exchanging missing values and creating a new data set with the missing values excganged:</p>
+<p>Exchanging missing values with the averaged values for appropriate intervals and creating a new data set with the missing values exchanged:</p>
 
 <pre><code class="r">nd &lt;- merge(data, steps_averaged, by=&quot;interval&quot;)
 nd &lt;- nd[order(nd$date),]
@@ -326,6 +326,8 @@ nd$day &lt;- weekdays(nd$day, abbreviate=FALSE)
 nd$day[nd$day %in% c(&quot;Saturday&quot;, &quot;Sunday&quot;)] &lt;- &quot;weekend&quot;
 nd$day[nd$day %in% c(&quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;)] &lt;- &quot;weekday&quot;
 </code></pre>
+
+<p>Prepare the data (assign correctly &ldquo;weekday&rdquo; and &ldquo;weekend&rdquo; values) and create a panel plot for comparison of results:</p>
 
 <pre><code class="r">weekdays &lt;- nd[nd$day==&quot;weekday&quot;,] 
 weekends &lt;- nd[nd$day==&quot;weekend&quot;,]
