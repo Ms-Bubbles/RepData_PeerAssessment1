@@ -1,25 +1,131 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+"PA1_template.Rmd1"
+===============================
+
+###1. Loading and Pre-preparing data
+
+Following code loads the data :
+
+```{r, echo=TRUE}
+setwd("D:/RWorking Directory/RepData_PeerAssessment1")
+data <- read.csv("activity.csv")
+```
+
+And transforms it into a suitable format:
+```{r, echo=TRUE}
+steps_sum <- tapply(data$steps, data$date, sum)
+steps_sum <- as.data.frame(steps_sum)
+steps_sum$steps_sum <- as.numeric(steps_sum$steps_sum)
+```
+
+###2. What is mean total number of steps taken per day?
+
+Following chunk of code creates a histogram of total numbers of steps taken per day:
+
+```{r, echo=TRUE}
+hist(steps_sum$steps_sum, xlab = "Total number of steps made per day", main= "Histogram of total steps made per day", cex.main = 1.2, cex.lab=0.8, font.lab = 3)
+```
+
+Following chunk of code counts the mean and median of the sum of steps taken each day, i.e: median of sum of steps taken on day 1, day 2... etc. and similarly with mean. NA values were ignored.
+
+```{r, echo=TRUE}
+
+mean(steps_sum$steps_sum, na.rm=TRUE)
+median(steps_sum$steps_sum, na.rm=TRUE)
+```
+
+###3. What is the average daily activity pattern?
+
+Creating a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis):
+
+```{r, echo=TRUE}
+steps_averaged <- tapply(data$steps, data$interval, mean, na.rm=TRUE)
+steps_averaged <- as.data.frame(steps_averaged)
+steps_averaged$steps_averaged <- as.numeric(steps_averaged$steps_averaged)
+
+plot(steps_averaged$steps_averaged, type="l", main="Steps averaged across all days based on intervals", xlab="Intervals", ylab="Steps Averaged", cex.main = 1.2, cex.lab=0.8, font.lab = 3)
+
+```
+
+Finding interval corresponding to the highest steps average:
+
+```{r, echo=TRUE}
+steps_averaged$interval <- rownames(steps_averaged)
+steps_averaged[which.max(steps_averaged$steps_averaged),]
+```
+
+###4. Imputing missing values
+
+How many missing values are there in the data set (number of rows)
+```{r, echo=TRUE}
+nrow(data[!complete.cases(data),])
+```
+
+Exchanging missing values and creating a new data set with the missing values excganged:
+
+```{r}
+nd <- merge(data, steps_averaged, by="interval")
+nd <- nd[order(nd$date),]
+
+nd$steps[is.na(nd$steps)] <- nd$steps_averaged[is.na(nd$steps)]
+
+```
+
+Creating a histogram of the total number of steps taken per day:
+
+```{r}
+steps_sum2 <- tapply(nd$steps, nd$date, sum)
+steps_sum2 <- as.data.frame(steps_sum2)
+steps_sum2$steps_sum2 <- as.numeric(steps_sum2$steps_sum2)
+
+hist(steps_sum2$steps_sum2, xlab = "Number of steps made per day", main= "Histogram of total steps made per day (NAs exluded)", cex.main = 1.2, cex.lab=0.8, font.lab=3)
+```
+
+Comparing two outcomes: with NAs and w/o NAs based on mean and median
+
+```{r}
+mean_na <- mean(steps_sum$steps_sum, na.rm=TRUE)
+median_na <- median(steps_sum$steps_sum, na.rm=TRUE)
+mean_nar <- mean(steps_sum2$steps_sum2, na.rm=TRUE)
+median_nar <- median(steps_sum2$steps_sum2, na.rm=TRUE)
+comp_table <- matrix(c(mean_na, median_na, mean_nar, median_nar), ncol=2)
+rownames(comp_table) <- c("Mean", "Median")
+colnames(comp_table) <- c("With NAs", "W/o NAs")
+comp_table
+```
+
+###5. Are there differences in activity patterns between weekdays and weekends?
+
+Create a new factor variable with two level information on the dates weekday or weekend:
+
+```{r}
+
+Sys.setlocale("LC_TIME", "English")
+
+nd$day <- as.Date(nd$date)
+nd$day <- weekdays(nd$day, abbreviate=FALSE)
+
+nd$day[nd$day %in% c("Saturday", "Sunday")] <- "weekend"
+nd$day[nd$day %in% c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")] <- "weekday"
+```
+
+```{r}
+
+weekdays <- nd[nd$day=="weekday",] 
+weekends <- nd[nd$day=="weekend",]
+wd <- as.data.frame(tapply(weekdays$steps, weekdays$interval, mean, na.rm=TRUE))
+we <- as.data.frame(tapply(weekends$steps, weekends$interval, mean, na.rm=TRUE))
+
+wd$intervals <- rownames(wd)
+we$intervals <- rownames(we)
+
+colnames(wd) <- c("steps", "intervals")
+colnames(we) <- c("steps", "intervals")
+
+par(mfrow=c(2,1))
+
+plot(we$steps, type="l", main = "Weekends", cex.lab=0.8, cex.axis=0.5, font.lab=3, cex.main=1, xlab="Intervals", ylab="Number of steps", col="blue")
+plot(wd$steps, type="l", main = "Weekdays", cex.lab=0.8, cex.axis=0.5, font.lab=3, cex.main=1, xlab="Intervals", ylab="Number of steps", col="blue")
 
 
-## Loading and preprocessing the data
+```
 
-
-
-## What is mean total number of steps taken per day?
-
-
-
-## What is the average daily activity pattern?
-
-
-
-## Imputing missing values
-
-
-
-## Are there differences in activity patterns between weekdays and weekends?
