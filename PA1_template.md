@@ -174,123 +174,4 @@ plot(wd$steps, type="l", main = "Weekdays", cex.lab=0.8, cex.axis=0.5, font.lab=
 
 ![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png) 
 
-Creating a html file based on the above:
-
-```
-## 
-## 
-## processing file: PA1_template.Rmd
-```
-
-```
-##   |                                                                         |                                                                 |   0%  |                                                                         |..                                                               |   4%
-##   ordinary text without R code
-## 
-##   |                                                                         |.....                                                            |   7%
-## label: unnamed-chunk-14 (with options) 
-## List of 1
-##  $ echo: logi TRUE
-## 
-##   |                                                                         |.......                                                          |  11%
-##   ordinary text without R code
-## 
-##   |                                                                         |..........                                                       |  15%
-## label: unnamed-chunk-15 (with options) 
-## List of 1
-##  $ echo: logi TRUE
-## 
-##   |                                                                         |............                                                     |  19%
-##   ordinary text without R code
-## 
-##   |                                                                         |..............                                                   |  22%
-## label: unnamed-chunk-16 (with options) 
-## List of 1
-##  $ echo: logi TRUE
-```
-
-```
-##   |                                                                         |.................                                                |  26%
-##   ordinary text without R code
-## 
-##   |                                                                         |...................                                              |  30%
-## label: unnamed-chunk-17 (with options) 
-## List of 1
-##  $ echo: logi TRUE
-## 
-##   |                                                                         |......................                                           |  33%
-##   ordinary text without R code
-## 
-##   |                                                                         |........................                                         |  37%
-## label: unnamed-chunk-18 (with options) 
-## List of 1
-##  $ echo: logi TRUE
-```
-
-```
-##   |                                                                         |..........................                                       |  41%
-##   ordinary text without R code
-## 
-##   |                                                                         |.............................                                    |  44%
-## label: unnamed-chunk-19 (with options) 
-## List of 1
-##  $ echo: logi TRUE
-## 
-##   |                                                                         |...............................                                  |  48%
-##   ordinary text without R code
-## 
-##   |                                                                         |..................................                               |  52%
-## label: unnamed-chunk-20 (with options) 
-## List of 1
-##  $ echo: logi TRUE
-## 
-##   |                                                                         |....................................                             |  56%
-##   ordinary text without R code
-## 
-##   |                                                                         |.......................................                          |  59%
-## label: unnamed-chunk-21
-##   |                                                                         |.........................................                        |  63%
-##   ordinary text without R code
-## 
-##   |                                                                         |...........................................                      |  67%
-## label: unnamed-chunk-22
-```
-
-```
-##   |                                                                         |..............................................                   |  70%
-##   ordinary text without R code
-## 
-##   |                                                                         |................................................                 |  74%
-## label: unnamed-chunk-23
-##   |                                                                         |...................................................              |  78%
-##   ordinary text without R code
-## 
-##   |                                                                         |.....................................................            |  81%
-## label: unnamed-chunk-24
-##   |                                                                         |.......................................................          |  85%
-##   ordinary text without R code
-## 
-##   |                                                                         |..........................................................       |  89%
-## label: unnamed-chunk-25
-```
-
-```
-##   |                                                                         |............................................................     |  93%
-##   ordinary text without R code
-## 
-##   |                                                                         |...............................................................  |  96%
-## label: unnamed-chunk-26 (with options) 
-## List of 1
-##  $ echo: logi FALSE
-```
-
-```
-##   |                                                                         |.................................................................| 100%
-##   ordinary text without R code
-```
-
-```
-## output file: PA1_template.md
-```
-
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
 
