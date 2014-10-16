@@ -129,3 +129,10 @@ plot(wd$steps, type="l", main = "Weekdays", cex.lab=0.8, cex.axis=0.5, font.lab=
 
 ```
 
+Creating a html file based on the above:
+```{r, echo=FALSE}
+library(knitr)
+knit2html("PA1_template.Rmd")
+
+```
+
